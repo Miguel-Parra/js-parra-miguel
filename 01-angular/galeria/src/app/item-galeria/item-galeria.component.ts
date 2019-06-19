@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { CarritoService } from '../Servicios/carrito/carrito.service';
 
 @Component({
   selector: 'app-item-galeria',
@@ -28,10 +29,15 @@ export class ItemGaleriaComponent implements OnInit, OnDestroy {
 
   url="https://http2.mlstatic.com/biela-repuestos-mercedes-benzom-166-D_NQ_NP_642014-MLU26705950558_012018-Q.jpg"
 
-  notas=[1,2,3,4,5,6,7,8,9,10]
-  constructor() { }
+  @Input()
+  notas;
 
- 
+  //Dependency
+  //Injection
+  //SERVICIOS -> Componentes
+  //SERVICIOS -> SERVICIOS
+  
+  constructor(private readonly _carritoService: CarritoService) { }
 
   alertar(){
     alert('Auxilio me desmayo'+this.nombreItem)
@@ -57,10 +63,25 @@ export class ItemGaleriaComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     console.log('Empezo');
+    console.log(this._carritoService.carritoCompras)
   }
 
   ngOnDestroy(){
     console.log('Termino');
+  }
+
+  agregarCarrito(valorCarrito){
+    //this._carritoService.carritoCompras.push(valorCarrito);
+    const itemCarrito={
+      valor: valorCarrito,
+      nombretienda: this.titulo
+    };
+    this._carritoService.carritoCompras
+    .splice(0,0,itemCarrito);
+    //donde empieza, cuanto borra, los items a 
+    //ingresar
+    console.log(this._carritoService.carritoCompras)
+
   }
 
 }

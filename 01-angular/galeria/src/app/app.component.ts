@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { StringifyOptions } from 'querystring';
+import { CarritoService } from './Servicios/carrito/carrito.service';
 
 @Component({
   selector: 'app-root',
@@ -22,21 +23,37 @@ export class AppComponent {
     {
       nombre:"Papitas",
       description:"A lo bestia",
-      titulo:"Don Jose"
+      titulo:"Don Jose",
+      notas: [
+        'Papitas',
+        'Empanadas',
+      ]
     },
     {
       nombre:"Carnitas",
       description:"Gorditas",
-      titulo:"Don Pepito"
+      titulo:"Don Pepito",
+      notas: [
+        'Motes',
+        'fritadas',
+      ]
 
     },
     {
       nombre:"Chicas",
       description:"Cheveres",
-      titulo:"Doña Maria"
+      titulo:"Doña Maria",
+      notas: [
+        'Encebollados',
+        'Ceviches',
+      ]
 
     }
   ]
+
+  constructor(private readonly _carritoService: CarritoService) { }
+
+  
   cambioChela(evento:boolean){
     //logica para hacerle verde
     console.log("llego a chela", evento)
