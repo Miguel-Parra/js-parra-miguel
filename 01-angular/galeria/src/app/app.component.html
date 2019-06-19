@@ -1,22 +1,22 @@
-<h1 class="rojo">Titulo {{title}}</h1>
-<!--{{interpolacion}}-->
-<app-item-galeria
-nombreItem="Papitas"
-textoBoton="a lo bestia"
->
+<h1 [class]="claseTitulo">Titulo {{title}}</h1>
+
+<button (click)="mostrar(true)">
+Mostrar
+</button>
+
+<button (click)="mostrar(false)">
+Ocultar
+</button>
+
+<div *ngIf="estaMostrando">
+    <!-- {{interpolacion}} -->
+<app-item-galeria 
+*ngFor="let flor of arregloFloresJs" 
+[titulo]="flor.titulo"
+[textoBoton]="flor.nombre" 
+[nombreItem]="flor.description"
+(cambioChela)="cambioChela($event)" 
+(cambioCerveza)="cambioCerveza($event)">
 
 </app-item-galeria>
-
-<app-item-galeria
-nombreItem="Carnitas"
-textoBoton="gorditas"
->
-
-</app-item-galeria>
-
-<app-item-galeria
-nombreItem="Chicas"
-textoBoton="cheveres"
->
-
-</app-item-galeria>
+        </div>
